@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portofolio Dika Chafizh, Software Engineer web dan backend.">
+<title>Dika Chafizh</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+  /* Layout concept: asymmetric hero with a 3D object on the right, then editorial sections with a label column on the left. */
+  :root {
+    --bg: #070f1e;
+    --bg-2: #0d1a2f;
+    --fg: #e6edf7;
+    --muted: #93a4bd;
+    --line: #1b2c47;
+    --accent: #5eb0ff;
+    --accent-ink: #04101f;
+    --accent-soft: rgba(94, 176, 255, 0.14);
+    --gl-core: #12233f;
+    --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+    --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #eef3fa;
+      --bg-2: #ffffff;
+      --fg: #0a1628;
+      --muted: #4a5c78;
+      --line: #d5deec;
+      --accent: #0b5fd1;
+      --accent-ink: #ffffff;
+      --accent-soft: rgba(11, 95, 209, 0.10);
+      --gl-core: #cdd9ec;
+      color-scheme: light;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #eef3fa;
+    --bg-2: #ffffff;
+    --fg: #0a1628;
+    --muted: #4a5c78;
+    --line: #d5deec;
+    --accent: #0b5fd1;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(11, 95, 209, 0.10);
+    --gl-core: #cdd9ec;
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    padding-block: 0 0;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    height: env(safe-area-inset-top, 0px);
+    background: var(--bg);
+    z-index: 30;
+  }
+  .wrap { max-width: 1120px; margin-inline: auto; }
+  a { color: inherit; }
+  h1, h2, h3, p { margin: 0; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  /* Header */
+  .site-header {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    margin-inline: calc(max(16px, env(safe-area-inset-left, 0px)) * -1) calc(max(16px, env(safe-area-inset-right, 0px)) * -1);
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+  }
+  .nav { max-width: 1120px; margin-inline: auto; display: flex; align-items: center; gap: 20px; height: 64px; }
+  .brand { font-family: var(--font-mono); font-weight: 500; font-size: 1rem; text-decoration: none; letter-spacing: -0.01em; }
+  .brand .cur { color: var(--accent); animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .nav-links { display: flex; gap: 22px; margin-left: auto; list-style: none; padding: 0; margin-block: 0; }
+  .nav-links a { font-size: 0.88rem; color: var(--muted); text-decoration: none; padding-block: 6px; border-bottom: 1px solid transparent; transition: color .2s, border-color .2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--fg); border-bottom-color: var(--accent); }
+  .nav-actions { display: flex; align-items: center; gap: 10px; }
+  .nav-links + .nav-actions { margin-left: 0; }
+  .theme-btn {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1px solid var(--line); background: var(--bg-2); color: var(--fg);
+    display: grid; place-items: center; cursor: pointer; transition: border-color .2s;
+  }
+  .theme-btn:hover { border-color: var(--accent); }
+  .pill {
+    font-size: 0.85rem; font-weight: 500; text-decoration: none;
+    padding: 8px 16px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent);
+    transition: background .2s, color .2s;
+  }
+  .pill:hover { background: var(--accent); color: var(--accent-ink); }
+
+  /* Hero */
+  .hero { padding-block: clamp(36px, 7vw, 88px) clamp(48px, 8vw, 96px); position: relative; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 32px; align-items: center; }
+  .hero-text { min-width: 0; display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--muted); }
+  .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  h1.name { font-family: var(--font-display); font-weight: 400; font-size: clamp(3.4rem, 10.5vw, 7.2rem); line-height: 0.92; letter-spacing: -0.025em; text-wrap: balance; }
+  .role { font-family: var(--font-display); font-style: italic; font-size: clamp(1.5rem, 3.4vw, 2.3rem); color: var(--accent); line-height: 1.15; }
+  .lead { max-width: 52ch; color: var(--muted); font-size: 1.05rem; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; font-weight: 500; font-size: 0.95rem;
+    padding: 12px 22px; border-radius: 999px; text-decoration: none; border: 1px solid var(--line); color: var(--fg);
+    transition: transform .2s, background .2s, border-color .2s, color .2s;
+  }
+  .btn:hover { transform: translateY(-2px); border-color: var(--fg); }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .btn.primary:hover { border-color: var(--accent); filter: brightness(1.06); }
+
+  .stage { position: relative; aspect-ratio: 1 / 1; max-height: 540px; width: 100%; min-width: 0; }
+  .stage::before {
+    content: ""; position: absolute; inset: 8%; border-radius: 50%;
+    background: radial-gradient(closest-side, var(--accent-soft), transparent 72%);
+  }
+  #gl { position: relative; width: 100%; height: 100%; display: block; }
+  .stage.no-gl #gl { display: none; }
+  .stage-hint { position: absolute; left: 0; bottom: 0; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+
+  .rise { animation: rise .8s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(var(--i, 0) * 90ms); }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+  /* Sections */
+  section[id] { scroll-margin-top: calc(72px + env(safe-area-inset-top, 0px)); }
+  .section { border-top: 1px solid var(--line); padding-block: clamp(56px, 9vw, 108px); }
+  .section-grid { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: clamp(24px, 5vw, 64px); }
+  .section-label { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); padding-top: 10px; }
+  .section-body { min-width: 0; display: flex; flex-direction: column; gap: 32px; }
+  h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.08; letter-spacing: -0.015em; text-wrap: balance; }
+  h2 em { color: var(--accent); }
+  .prose { display: flex; flex-direction: column; gap: 16px; color: var(--muted); max-width: 62ch; }
+  .prose strong { color: var(--fg); font-weight: 500; }
+
+  .code {
+    margin: 0; padding: 20px 22px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 12px;
+    font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.7; overflow-x: auto; max-width: 62ch;
+  }
+  .code .k, .code .n { color: var(--accent); }
+  .code .s { color: var(--fg); }
+  .code .p { color: var(--muted); }
+
+  /* Skills */
+  .stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px 32px; }
+  .stack-group { min-width: 0; display: flex; flex-direction: column; gap: 12px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .stack-group h3 { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+  .chip { font-family: var(--font-mono); font-size: 0.8rem; padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg-2); }
+
+  /* Projects */
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .card {
+    --mx: 50%; --my: 0%;
+    position: relative; min-width: 0; display: flex; flex-direction: column; gap: 14px;
+    padding: 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-2);
+    transition: transform .3s cubic-bezier(.2, .7, .2, 1), border-color .3s;
+    overflow: hidden;
+  }
+  .card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .3s;
+    background: radial-gradient(320px circle at var(--mx) var(--my), var(--accent-soft), transparent 70%);
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .card:hover::after { opacity: 1; }
+  .card > * { position: relative; z-index: 1; }
+  .tag { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border: 1px dashed var(--line); border-radius: 999px; padding: 2px 9px; align-self: flex-start; }
+  .card h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.7rem; line-height: 1.12; }
+  .facts { margin: 0; display: grid; gap: 10px; font-size: 0.92rem; }
+  .facts div { display: grid; gap: 2px; }
+  .facts dt { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+  .facts dd { margin: 0; color: var(--muted); }
+  .card .chips { margin-top: auto; }
+  .chip-todo { border-style: dashed; color: var(--muted); }
+  .facts dd.todo { font-style: italic; opacity: 0.8; }
+  .card.feature { grid-column: 1 / -1; padding: clamp(22px, 4vw, 36px); }
+  .feature-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); }
+  .feature-col { min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  .feature h3 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); }
+  .feat-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 0.92rem; color: var(--muted); }
+  .feat-list li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 8px; }
+  .feat-list li::before { content: ">"; font-family: var(--font-mono); color: var(--accent); }
+  .feat-list b { color: var(--fg); font-weight: 500; }
+  .feat-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+  .metrics { display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); padding-top: 4px; }
+  .metrics b { color: var(--fg); font-weight: 500; }
+  .links { display: flex; gap: 16px; font-family: var(--font-mono); font-size: 0.8rem; }
+  .link-ph { color: var(--muted); border-bottom: 1px dashed var(--line); cursor: default; }
+
+  /* Timeline */
+  .timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .timeline li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 24px; padding-block: 22px; border-top: 1px solid var(--line); }
+  .timeline li:first-child { border-top: 0; padding-top: 0; }
+  .when { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent); padding-top: 3px; }
+  .what { display: flex; flex-direction: column; gap: 6px; min-width: 0; align-items: flex-start; }
+  .what h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; line-height: 1.15; }
+  .what p { color: var(--muted); max-width: 58ch; }
+
+  /* Contact */
+  .contact-big { font-family: var(--font-display); font-size: clamp(2.2rem, 5.6vw, 4.2rem); line-height: 1.04; letter-spacing: -0.02em; text-wrap: balance; }
+  .contact-big em { color: var(--accent); }
+  .mail-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .mail { font-family: var(--font-mono); font-size: 1rem; padding: 12px 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-2); user-select: all; overflow-wrap: anywhere; }
+  .copy { font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; padding: 12px 20px; border-radius: 999px; border: 1px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; transition: background .2s, color .2s; }
+  .copy:hover { background: var(--accent); color: var(--accent-ink); }
+  .social { display: flex; flex-wrap: wrap; gap: 10px 24px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); }
+  .social span b { color: var(--fg); font-weight: 500; }
+
+  footer { border-top: 1px solid var(--line); padding-block: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+
+  /* Scroll reveal: content stays visible, only the position shifts. */
+  .js .reveal { transform: translateY(22px); transition: transform .8s cubic-bezier(.2, .7, .2, 1); }
+  .js .reveal.in { transform: none; }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: minmax(0, 1fr); }
+    .stage { max-height: 380px; aspect-ratio: 4 / 3; }
+    .section-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    .section-label { padding-top: 0; }
+    .feature-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .nav-actions { margin-left: auto; }
+    .timeline li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .rise { animation: none; }
+    .js .reveal { transform: none; transition: none; }
+    .brand .cur { animation: none; }
+    .card, .btn { transition: none; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav" aria-label="Navigasi utama">
+    <a class="brand" href="#top" aria-label="Dika Chafizh, ke atas">chafizh<span class="cur">_</span></a>
+    <ul class="nav-links">
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#teknologi">Teknologi</a></li>
+      <li><a href="#proyek">Proyek</a></li>
+      <li><a href="#perjalanan">Perjalanan</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="pill" href="#kontak">Kontak</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Ganti tema terang atau gelap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"></path></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap" id="top">
+  <section class="hero" aria-label="Perkenalan">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow rise" style="--i:0"><span class="dot"></span>Terbuka untuk posisi Software Engineer · Lulus 2027</p>
+        <h1 class="name rise" style="--i:1">Dika Chafizh</h1>
+        <p class="role rise" style="--i:2">Software Engineer, web dan backend.</p>
+        <p class="lead rise" style="--i:3">Mahasiswa Teknik Informatika semester 7 yang merancang perangkat lunak yang andal, cepat, dan mudah dipakai, dari rancangan basis data sampai antarmuka.</p>
+        <div class="cta rise" style="--i:4">
+          <a class="btn primary" href="#proyek">Lihat proyek</a>
+          <a class="btn" href="#kontak">Hubungi saya</a>
+        </div>
+      </div>
+      <div class="stage" id="stage" aria-hidden="true">
+        <canvas id="gl"></canvas>
+        <span class="stage-hint">// gerakkan kursor untuk memutar</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tentang">
+    <div class="section-grid">
+      <p class="section-label reveal">Tentang</p>
+      <div class="section-body">
+        <h2 class="reveal">Sistem yang rapi di belakang layar, <em>antarmuka</em> yang tidak membingungkan.</h2>
+        <div class="prose reveal">
+          <p>Saya Dika, mahasiswa S1 Teknik Informatika semester 7 yang sedang menyiapkan diri masuk dunia kerja sebagai <strong>software engineer</strong>. Saya suka pekerjaan yang membuat sistem berjalan teratur: rancangan basis data, REST API, dan tampilan yang jelas bagi penggunanya.</p>
+          <p>Saya membangun sistem untuk kebutuhan nyata: pendataan aset sekolah, toko online rumah makan, website lembaga zakat, sampai sistem presensi dan konsumsi untuk acara desa.</p>
+        </div>
+        <pre class="code reveal" aria-label="Ringkasan profil dalam bentuk kode"><code><span class="k">const</span> dika = {
+  <span class="p">peran</span>: <span class="s">"Software Engineer"</span>,
+  <span class="p">fokus</span>: [<span class="s">"Web"</span>, <span class="s">"Backend"</span>, <span class="s">"Basis Data"</span>],
+  <span class="p">status</span>: <span class="s">"Terbuka untuk bekerja"</span>,
+  <span class="p">lulus</span>: <span class="n">2027</span>,
+};</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="teknologi">
+    <div class="section-grid">
+      <p class="section-label reveal">Teknologi</p>
+      <div class="section-body">
+        <h2 class="reveal">Alat yang saya pakai <em>sehari-hari</em>.</h2>
+        <div class="stack reveal">
+          <div class="stack-group">
+            <h3>Bahasa</h3>
+            <ul class="chips"><li class="chip">JavaScript</li><li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">SQL</li></ul>
+          </div>
+          <div class="stack-group">
+            <h3>Web dan cloud</h3>
+            <ul class="chips"><li class="chip">Firebase</li><li class="chip">Firestore</li><li class="chip">Firebase Hosting</li><li class="chip">Canvas API</li></ul>
+          </div>
+          <div class="stack-group">
+            <h3>Pustaka dan alat</h3>
+            <ul class="chips"><li class="chip">html5-qrcode</li><li class="chip">SheetJS</li><li class="chip">JSZip</li><li class="chip">Git</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="proyek">
+    <div class="section-grid">
+      <p class="section-label reveal">Proyek</p>
+      <div class="section-body">
+        <h2 class="reveal">Proyek <em>nyata</em> yang pernah saya kerjakan.</h2>
+        <div class="projects">
+          <article class="card feature reveal">
+            <div class="feature-grid">
+              <div class="feature-col">
+                <span class="tag">Proyek unggulan · sistem acara desa</span>
+                <h3>Sistem CAI 2026 Kenanga</h3>
+                <dl class="facts">
+                  <div><dt>Masalah</dt><dd>Panitia harus mencatat kehadiran 7 kegiatan, 4 sesi makan, dan penilaian untuk 72 peserta dengan cepat dan akurat.</dd></div>
+                  <div><dt>Solusi</dt><dd>Aplikasi web real-time. Setiap peserta memegang kartu ID ber-QR, panitia memindainya lewat kamera HP, dan datanya langsung masuk ke dasbor rekap.</dd></div>
+                  <div><dt>Peran</dt><dd>Perancangan dan pengembangan sistem dari basis data sampai antarmuka.</dd></div>
+                </dl>
+                <div class="metrics"><span><b>72</b> peserta</span><span><b>7</b> kegiatan</span><span><b>4</b> sesi makan</span></div>
+              </div>
+              <div class="feature-col">
+                <span class="feat-label">Fitur utama</span>
+                <ul class="feat-list">
+                  <li><span><b>Scan QR</b> lewat kamera untuk presensi dan distribusi konsumsi, dengan penolakan scan ganda.</span></li>
+                  <li><span><b>Penilaian</b> peserta: vote favorit, kartu hijau untuk apresiasi, dan kartu merah untuk pelanggaran, lengkap dengan catatan.</span></li>
+                  <li><span><b>Dasbor admin</b> berisi rekap per sesi, pelacakan peserta yang belum hadir atau belum makan, dan ekspor laporan Excel.</span></li>
+                  <li><span><b>Impor peserta</b> dari Excel dan <b>cetak kartu ID</b> otomatis: desain dan QR digabung, 9 kartu per A4, atau unduh semuanya dalam satu ZIP.</span></li>
+                  <li><span><b>Sinkron real-time</b> lewat Firestore dengan indikator status koneksi.</span></li>
+                </ul>
+                <ul class="chips"><li class="chip">JavaScript</li><li class="chip">Firebase Firestore</li><li class="chip">Firebase Hosting</li><li class="chip">html5-qrcode</li><li class="chip">SheetJS</li><li class="chip">JSZip</li></ul>
+                <div class="links"><span class="link-ph" title="Isi dengan tautan demo">Demo</span><span class="link-ph" title="Isi dengan tautan repositori">Kode</span></div>
+              </div>
+            </div>
+          </article>
+          <article class="card reveal">
+            <span class="tag">Instansi pendidikan</span>
+            <h3>Sistem aset SMKN 11 Kota Tangerang</h3>
+            <dl class="facts">
+              <div><dt>Masalah</dt><dd>Aset sekolah perlu didata dan dipantau agar mudah dicari dan dipertanggungjawabkan.</dd></div>
+              <div><dt>Solusi</dt><dd>Website untuk mengelola data aset sekolah secara terpusat.</dd></div>
+              <div><dt>Peran</dt><dd class="todo">Lengkapi: bagian yang kamu kerjakan dan hasilnya.</dd></div>
+            </dl>
+            <ul class="chips"><li class="chip chip-todo">Isi stack</li></ul>
+            <div class="links"><span class="link-ph" title="Isi dengan tautan demo">Demo</span><span class="link-ph" title="Isi dengan tautan repositori">Kode</span></div>
+          </article>
+          <article class="card reveal">
+            <span class="tag">E-commerce</span>
+            <h3>Toko online rumah makan Padang</h3>
+            <dl class="facts">
+              <div><dt>Masalah</dt><dd>Rumah makan membutuhkan kanal online agar pelanggan bisa melihat menu dan memesan tanpa datang langsung.</dd></div>
+              <div><dt>Solusi</dt><dd>Website toko online dengan daftar menu dan pemesanan.</dd></div>
+              <div><dt>Peran</dt><dd class="todo">Lengkapi: bagian yang kamu kerjakan dan hasilnya.</dd></div>
+            </dl>
+            <ul class="chips"><li class="chip chip-todo">Isi stack</li></ul>
+            <div class="links"><span class="link-ph" title="Isi dengan tautan demo">Demo</span><span class="link-ph" title="Isi dengan tautan repositori">Kode</span></div>
+          </article>
+          <article class="card reveal">
+            <span class="tag">Lembaga zakat</span>
+            <h3>Website Baznas</h3>
+            <dl class="facts">
+              <div><dt>Masalah</dt><dd>Informasi dan layanan lembaga zakat perlu mudah diakses oleh masyarakat.</dd></div>
+              <div><dt>Solusi</dt><dd class="todo">Lengkapi: fitur utama yang kamu bangun.</dd></div>
+              <div><dt>Peran</dt><dd class="todo">Lengkapi: bagian yang kamu kerjakan dan hasilnya.</dd></div>
+            </dl>
+            <ul class="chips"><li class="chip chip-todo">Isi stack</li></ul>
+            <div class="links"><span class="link-ph" title="Isi dengan tautan demo">Demo</span><span class="link-ph" title="Isi dengan tautan repositori">Kode</span></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="perjalanan">
+    <div class="section-grid">
+      <p class="section-label reveal">Perjalanan</p>
+      <div class="section-body">
+        <h2 class="reveal">Pendidikan dan <em>pengalaman</em>.</h2>
+        <ol class="timeline reveal">
+          <li>
+            <span class="when">2026</span>
+            <div class="what"><span class="tag">Contoh</span><h3>Kerja praktik, Nama Perusahaan</h3><p>Satu kalimat tentang apa yang kamu bangun dan hasil yang bisa diukur, misalnya waktu proses yang turun atau jumlah pengguna.</p></div>
+          </li>
+          <li>
+            <span class="when">2025</span>
+            <div class="what"><span class="tag">Contoh</span><h3>Asisten laboratorium atau organisasi</h3><p>Tulis peran, kegiatan, dan jumlah orang yang kamu bantu atau pimpin.</p></div>
+          </li>
+          <li>
+            <span class="when">2023 – sekarang</span>
+            <div class="what"><h3>S1 Teknik Informatika</h3><p>Semester 7. Fokus pada rekayasa perangkat lunak, basis data, dan jaringan komputer.</p></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kontak">
+    <div class="section-grid">
+      <p class="section-label reveal">Kontak</p>
+      <div class="section-body">
+        <p class="contact-big reveal">Ada posisi atau proyek yang cocok? <em>Mari bicara.</em></p>
+        <div class="mail-row reveal">
+          <code class="mail" id="mail">halo@chafizh.dev</code>
+          <button class="copy" id="copyBtn" type="button">Salin email</button>
+          <span id="copyNote" class="social" role="status" aria-live="polite"></span>
+        </div>
+        <p class="social reveal"><span><b>GitHub</b> github.com/chafizh</span><span><b>LinkedIn</b> linkedin.com/in/chafizh</span><span class="tag">Contoh, ganti dengan milikmu</span></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Dika Chafizh</span>
+    <span>HTML, CSS, JavaScript, dan Three.js</span>
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  var root = document.documentElement;
+
+  /* Theme toggle */
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+  } catch (e) {}
+  function effective() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t;
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    var next = effective() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  /* Scroll reveal */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); rio.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    reveals.forEach(function (el) { rio.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* Active nav link */
+  var links = {};
+  document.querySelectorAll('.nav-links a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var nio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          Object.keys(links).forEach(function (k) { links[k].classList.toggle('active', k === en.target.id); });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['tentang', 'teknologi', 'proyek', 'perjalanan'].forEach(function (id) {
+      var s = document.getElementById(id); if (s) nio.observe(s);
+    });
+  }
+
+  /* Card spotlight */
+  document.querySelectorAll('.card').forEach(function (card) {
+    card.addEventListener('pointermove', function (e) {
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  /* Copy email */
+  var copyBtn = document.getElementById('copyBtn');
+  var copyNote = document.getElementById('copyNote');
+  var mail = document.getElementById('mail');
+  function selectMail() {
+    var range = document.createRange(); range.selectNodeContents(mail);
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+  }
+  copyBtn.addEventListener('click', function () {
+    var text = mail.textContent.trim();
+    function ok() { copyNote.textContent = 'Tersalin'; setTimeout(function () { copyNote.textContent = ''; }, 2000); }
+    function fail() { selectMail(); copyNote.textContent = 'Teks terpilih, tekan salin'; }
+    try {
+      navigator.clipboard.writeText(text).then(ok, fail);
+    } catch (e) { fail(); }
+  });
+
+  /* 3D hero */
+  var host = document.getElementById('stage');
+  var canvas = document.getElementById('gl');
+  if (!host || !canvas) return;
+  if (!window.THREE) { host.classList.add('no-gl'); return; }
+  var T = window.THREE;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var renderer;
+  try {
+    renderer = new T.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+  } catch (err) { host.classList.add('no-gl'); return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x000000, 0);
+
+  var scene = new T.Scene();
+  var camera = new T.PerspectiveCamera(38, 1, 0.1, 100);
+  camera.position.set(0, 0, 8.4);
+  var rig = new T.Group();
+  scene.add(rig);
+
+  var coreMat = new T.MeshStandardMaterial({ flatShading: true, roughness: 0.4, metalness: 0.25 });
+  var core = new T.Mesh(new T.IcosahedronGeometry(1.25, 0), coreMat);
+  rig.add(core);
+  var shellMat = new T.LineBasicMaterial({ transparent: true, opacity: 0.7 });
+  var shell = new T.LineSegments(new T.EdgesGeometry(new T.IcosahedronGeometry(1.85, 1)), shellMat);
+  rig.add(shell);
+  var ringMat = new T.MeshBasicMaterial({ transparent: true, opacity: 0.55 });
+  var ring = new T.Mesh(new T.TorusGeometry(2.7, 0.015, 8, 180), ringMat);
+  ring.rotation.x = 1.15; ring.rotation.y = 0.35;
+  rig.add(ring);
+  var ring2 = new T.Mesh(new T.TorusGeometry(3.25, 0.01, 8, 180), ringMat);
+  ring2.rotation.x = 0.4; ring2.rotation.y = -0.6;
+  rig.add(ring2);
+
+  var satMat = new T.MeshStandardMaterial({ flatShading: true, roughness: 0.5, metalness: 0.2 });
+  var sats = [];
+  for (var i = 0; i < 16; i++) {
+    var geo = (i % 2) ? new T.OctahedronGeometry(0.1 + Math.random() * 0.06) : new T.BoxGeometry(0.14, 0.14, 0.14);
+    var m = new T.Mesh(geo, satMat);
+    sats.push({
+      mesh: m,
+      r: 2.3 + Math.random() * 1.4,
+      a: Math.random() * Math.PI * 2,
+      s: (0.15 + Math.random() * 0.3) * (Math.random() < 0.5 ? -1 : 1),
+      tilt: (Math.random() - 0.5) * 1.6,
+      y: (Math.random() - 0.5) * 1.2
+    });
+    rig.add(m);
+  }
+
+  var tagTexts = ['</>', '{ }', 'git', 'sql'];
+  var tagY = [0.9, -0.8, 1.5, -1.4];
+  var tags = tagTexts.map(function (txt, idx) {
+    var c = document.createElement('canvas');
+    c.width = 256; c.height = 128;
+    var tex = new T.CanvasTexture(c);
+    var sp = new T.Sprite(new T.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
+    sp.scale.set(1.3, 0.65, 1);
+    rig.add(sp);
+    return { txt: txt, c: c, tex: tex, sp: sp, a: idx * 1.57, r: 3.0 + idx * 0.15, s: 0.22 + idx * 0.04, y: tagY[idx] };
+  });
+  function drawTag(t, col) {
+    var g = t.c.getContext('2d');
+    g.clearRect(0, 0, 256, 128);
+    g.font = '500 54px "JetBrains Mono", ui-monospace, Menlo, monospace';
+    g.textAlign = 'center';
+    g.textBaseline = 'middle';
+    g.fillStyle = col;
+    g.fillText(t.txt, 128, 64);
+    t.tex.needsUpdate = true;
+  }
+
+  scene.add(new T.AmbientLight(0xffffff, 0.75));
+  var key = new T.DirectionalLight(0xffffff, 0.9);
+  key.position.set(3, 4, 6);
+  scene.add(key);
+  var pt = new T.PointLight(0xffffff, 0.8, 30);
+  pt.position.set(-4, -2, 4);
+  scene.add(pt);
+
+  function cssVar(n) { return getComputedStyle(root).getPropertyValue(n).trim(); }
+  function draw() { renderer.render(scene, camera); }
+  function applyColors() {
+    var acc = cssVar('--accent') || '#5eb0ff';
+    var coreC = cssVar('--gl-core') || '#12233f';
+    var fg = cssVar('--fg') || '#ffffff';
+    coreMat.color.set(coreC);
+    shellMat.color.set(acc);
+    ringMat.color.set(acc);
+    satMat.color.set(acc);
+    pt.color.set(acc);
+    tags.forEach(function (t) { drawTag(t, fg); });
+    draw();
+  }
+
+  function resize() {
+    var w = host.clientWidth, h = host.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    draw();
+  }
+  if ('ResizeObserver' in window) new ResizeObserver(resize).observe(host);
+  else window.addEventListener('resize', resize);
+
+  var mx = 0, my = 0, tx = 0, ty = 0, time = 0, last = 0, running = false, visible = true;
+  window.addEventListener('pointermove', function (e) {
+    tx = e.clientX / window.innerWidth - 0.5;
+    ty = e.clientY / window.innerHeight - 0.5;
+  }, { passive: true });
+
+  function update(dt) {
+    time += dt;
+    mx += (tx - mx) * 0.05;
+    my += (ty - my) * 0.05;
+    rig.rotation.y = mx * 0.9 + time * 0.12;
+    rig.rotation.x = my * 0.5;
+    core.rotation.x = time * 0.2;
+    core.rotation.y = time * 0.28;
+    shell.rotation.y = -time * 0.1;
+    shell.rotation.z = time * 0.07;
+    ring.rotation.z = time * 0.05;
+    sats.forEach(function (o) {
+      o.a += o.s * dt;
+      o.mesh.position.set(Math.cos(o.a) * o.r, o.y + Math.sin(o.a) * o.r * Math.sin(o.tilt) * 0.5, Math.sin(o.a) * o.r * Math.cos(o.tilt));
+      o.mesh.rotation.x += dt;
+      o.mesh.rotation.y += dt * 0.7;
+    });
+    tags.forEach(function (t) {
+      t.a += t.s * dt;
+      t.sp.position.set(Math.cos(t.a) * t.r, t.y + Math.sin(time * 0.8 + t.a) * 0.12, Math.sin(t.a) * t.r * 0.6);
+    });
+  }
+  function frame(now) {
+    if (!running) return;
+    var dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    update(dt);
+    draw();
+    requestAnimationFrame(frame);
+  }
+  function start() {
+    if (reduce || running || !visible || document.hidden) return;
+    running = true;
+    last = performance.now();
+    requestAnimationFrame(frame);
+  }
+  function stop() { running = false; }
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      visible = entries[0].isIntersecting;
+      if (visible) start(); else stop();
+    }).observe(host);
+  }
+  document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
+
+  new MutationObserver(applyColors).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  var mq = window.matchMedia('(prefers-color-scheme: light)');
+  if (mq.addEventListener) mq.addEventListener('change', applyColors);
+  else if (mq.addListener) mq.addListener(applyColors);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(applyColors);
+
+  update(0.6);
+  applyColors();
+  resize();
+  start();
+})();
+</script>
+</body>
+</html>
